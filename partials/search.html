@@ -1,0 +1,6 @@
+<div ng-controller="SearchController">
+    <h1>Search</h1>
+    <div ng-repeat="book in books | orderBy:'label'">
+        <a href="/api/books/{{ book.id }}/0">{{ book.label }}</a>
+    </div>
+</div>

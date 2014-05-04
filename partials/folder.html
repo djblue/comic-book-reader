@@ -1,0 +1,28 @@
+<div ng-controller="FolderController">
+    <h1>Folder</h1>
+
+    <input type="text" ng-model="search"/>
+    <div ng-if="search != ''">
+        <button ng-click="clear();">Clear</button>
+    </div>
+
+    <ul>
+        <li ng-repeat="node in path">
+            <a href="#/folders/{{node.id}}">{{ node.label }}</a>
+        </li>
+    </ul>
+
+    <div ng-if="parent >= 0">
+        <a href="#/folders/{{parent}}">back to parent</a>
+    </div>
+    <div ng-repeat="folder in folders | orderBy:'label'">
+        folder: <a href="#/folders/{{folder.id}}">{{ folder.label }}</a>
+    </div>
+    <div ng-repeat="book in books | orderBy:'label'">
+        <!--
+        <img ng-src="/api/books/{{book.id}}/{{book.current}}?width=200" />
+        -->
+        comic: <a href="#/viewer/{{ book.id }}/{{ book.current }}">{{ book.label }}</a>
+    </div>
+
+</div>

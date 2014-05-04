@@ -1,0 +1,17 @@
+<div ng-controller="ViewerController">
+    <h1>Viewer</h1>
+    <a href="#/folders/{{book.folder}}">back to folder</a>
+    <div ng-if="!!max">
+
+        <div ng-if="page > 0">
+            <a href="#/viewer/{{id}}/{{page-1}}">previous</a>
+        </div>
+
+        <div ng-if="page < max">
+            <a href="#/viewer/{{id}}/{{page+1}}">next</a>
+            <img style="display: none;" ng-src="/api/books/{{id}}/{{page+1}}"/>
+        </div>
+
+        <img style="width: 100px;" ng-src="/api/books/{{id}}/{{page}}"/>
+    </div>
+</div>

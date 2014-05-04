@@ -2,3 +2,4 @@ composer.lock
 composer.phar
 db
 vendor
+bower_components
