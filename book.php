@@ -12,6 +12,8 @@ class Book {
     // class reference of config object
     public static $config;
 
+    public $md5;
+
     // Instance Variable
     private $path;
     private $ext;
@@ -26,7 +28,7 @@ class Book {
         if (is_numeric($id)) {
 
             // Search the database based on the supplied $id.
-            $query = self::$db->prepare('SELECT `path`,`ext`,`pages` FROM books
+            $query = self::$db->prepare('SELECT `path`,`ext`,`pages`,`md5` FROM books
                 WHERE `id`=:id');
 
             $query->bindValue(':id', $id);
@@ -41,6 +43,7 @@ class Book {
             $this->path  = $result['path'];
             $this->ext   = $result['ext'];
             $this->pages = $result['pages'];
+            $this->md5   = $result['md5'];
 
         } else {
 

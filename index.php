@@ -61,6 +61,8 @@ function ($id, $page_number = 0) use ($app) {
     // Construct a book with the supplied id.
     $book = new Book($id);             
 
+    $app->etag($book->md5);
+
     // Get page stream; default is zero if not specified.
     $stream = $book->get_page_stream($page_number);
 
