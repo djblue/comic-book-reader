@@ -12,14 +12,15 @@ define('IMG',  ROOT.'img/');
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-require('config.php');
-require('book.php');
 require('vendor/autoload.php');
 
-
-\Slim\Slim::registerAutoloader();
-
 $app = new \Slim\Slim();
+
+require('config.php');
+require('book.php');
+require('resource.php');
+
+$resource = new Resource($app);
 
 $app->get('/', function () use ($app) { include('index.html'); });
 
@@ -48,12 +49,8 @@ $app->get('/api/scan', function () use ($app) {
     //$response->body(json_encode(Book::list_all_books()));
 });
 
-
-$app->get('/api/books', function () use ($app) {
-    $res = $app->response();
-    $res['Content-Type'] = 'application/json';
-    $res->body(json_encode(Book::list_all_books()));
-});
+$app->get('/api/books', $resource->get('books'));
+$app->get('/api/folders', $resource->get('folders'));
 
 $app->get('/api/books/:id/:page_number', 
 
@@ -119,103 +116,4 @@ function ($id, $page_number = 0) use ($app) {
     }
 });
 
-/*
-$app->get('/:table', function ($table) use ($app) {
-
-    $db = new SQLite3('cache/cbviewer.db');
-
-    try {
-
-        $result = $db->query("SELECT `id`,`data` FROM $table");
-
-        $array = [];
-
-        while($row = $result->fetchArray(SQLITE3_ASSOC)) {
-
-            $array[] = array_merge( ['id' => $row['id']],
-                json_decode($row['data'], true));
-        }
-
-        $res = $app->response();
-        $res['Content-Type'] = 'application/json'; 
-        $res->body(json_encode($array));
-
-    } catch (ErrorException $error) {
-
-        print_r($error);
-    }
-});
-
-$app->get('/:table/:id', function ($table, $id) use ($app) {
-
-    $db = new SQLite3('cache/cbviewer.db');
-
-    //try {
-
-        $statement = $db->prepare("SELECT `id`,`data` FROM $table WHERE `id`=:id");
-        $statement->bindValue(':id', $id);
-
-        $row = $statement->execute()->fetchArray(SQLITE3_ASSOC);
-
-        $result = array_merge( ['id' => $row['id']],
-                json_decode($row['data'], true));
-
-
-        $res = $app->response();
-        $res['Content-Type'] = 'application/json'; 
-        $res->body(json_encode($result));
-
-    
-    //} catch (ErrorException $error) {
-
-     //   print_r($error);
-    //}
-});
-
-$app->post('/:table', function ($table) use ($app) {
-
-    $req = $app->request();
-    $body = $req->getBody();
-
-
-    if ($req->headers()['CONTENT_TYPE'] == 'application/json')
-    {
-        try {
-
-            $db = new SQLite3('cache/cbviewer.db');
-
-            $statement = $db->prepare("INSERT INTO $table 
-                (`id`,`data`) VALUES ( :id, :data )");
-
-            $statement->bindValue(':id', md5($body)); 
-            $statement->bindValue(':data', $body);
-
-            $statement->execute();
-            
-
-        } catch (ErrorException $error) {
-
-            var_dump($error);
-
-        }
-    }
-});
-
-$app->delete('/:table/:id', function ($table, $id) use ($app) {
-
-    $req = $app->request();
-
-    $db = new SQLite3('cache/cbviewer.db');
-
-    $statement = $db->prepare("DELETE FROM $table 
-        WHERE `id`=:id LIMIT 1");
-
-    $statement->bindValue(':id', $id); 
-
-    print_r($statement->execute()->fetchArray(SQLITE3_ASSOC));
-    
-});
-*/
-
 $app->run();
-
