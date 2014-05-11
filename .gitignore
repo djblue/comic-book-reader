@@ -3,3 +3,4 @@ composer.phar
 db
 vendor
 bower_components
+.htpasswd
