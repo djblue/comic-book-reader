@@ -2,16 +2,13 @@ var app = angular.module('app', ['ngRoute'])
 .config(['$routeProvider', 
     function ($routeProvider) {
         $routeProvider
-            .when('/', {
-                templateUrl: '/partials/search.html'
-            })
             .when('/folders/:id', {
                 templateUrl: '/partials/folder.html'
             })
             .when('/viewer/:id/:page', {
                 templateUrl: '/partials/viewer.html'
             })
-            .otherwise({ redirectTo: '/' });
+            .otherwise({ redirectTo: '/folders/0' });
     }]);
 
 
@@ -38,16 +35,6 @@ function ($q, $http) {
 
 }]);
 
-app.controller('SearchController', ['$http', '$scope', 'Data',
-
-function ($http, $scope, Data) {
-
-    Data.books.then(function (books) {
-        $scope.books = books;
-    });
-
-}]);
-
 app.controller('FolderController', ['$http', '$scope', '$routeParams', 'Data',
 
 function ($http, $scope, $routeParams, Data) {
@@ -64,27 +51,13 @@ function ($http, $scope, $routeParams, Data) {
 
         $scope.parent = (!!$scope.current)? $scope.current.parent : -1;
 
-        $scope.path = [{label: 'Root', id:0}];
-
-        var build_path = function (folder) {
-            if (!!folder) {
-                if (folder.id != 0) { // not the root node
-                    // find parent and go up the path
-                    build_path(_.find(folders, function (f) {
-                        return folder.parent == f.id;
-                    }));
-                }
-                $scope.path.push(folder);
-            }
-        };
-
-        build_path($scope.current);
-
         $scope.folders = _.filter(folders, function (folder) {
             return folder.parent ==  $routeParams.id;
         });
 
     });
+
+    $scope.search = "";
 
     Data.books.then(function (books) {
 
@@ -92,7 +65,6 @@ function ($http, $scope, $routeParams, Data) {
             return book.folder ==  $routeParams.id;
         });
 
-        $scope.search = "";
         $scope.$watch('search', function () {
             if ($scope.search != "") {
                 $scope.books = _.filter(books, function (book) {
