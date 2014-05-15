@@ -25,9 +25,10 @@
         </div>
     </div>
 
-    <div class="container comic-page">
+    <div on-keypress="keypress($event)" on-keyup="keyup($event)" class="container comic-page">
         <a href="#/viewer/{{id}}/{{page+1}}">
             <img style="width: 100%;" ng-src="/api/books/{{id}}/{{page}}"/>
         </a>
     </div>
+
 </div>
