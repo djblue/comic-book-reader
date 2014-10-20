@@ -1,44 +1,48 @@
 /* reset browser defaults */
 
 html, body {
-    width: 100%;
-    overflow-x: hidden;
-    margin: 0;
-    padding: 0; }
+  width: 100%;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
 
-img { display: block; width: 100%; }
+img {
+  display: block;
+  width: 100%;
+}
 
+/* don't show scrollbars in chrome */
 ::-webkit-scrollbar {
-    display: none; }
+  display: none;
+}
 
 li {
-    list-style: none; }
+  list-style: none;
+}
 
 a {
-    color: #073a7c;
-    text-decoration: none; }
-a:hover {
-    text-decoration: underline; }
+  color: #666;
+  text-decoration: none;
+}
 
 /* general typography */
 
 * {
-    font-size: 12pt;
-    font-family: helvetica, arial, sans-serif; }
+  font-size: 12pt;
+  font-family: helvetica, arial, sans-serif;
+}
 
 h1 {
-    line-height: 32px;
-    color: #073a7c;
-    font-size: 125%; }
+  color: #073a7c;
+}
 
 h1, h2, h3 {
-    display: inline-block;
-    font-family: cambria, serif; }
+  display: inline-block;
+  font-family: cambria, serif;
+}
 
 /* default settings */
-
-html {
-    background: #eee; }
 
 small {
     font-weight: 100;
@@ -48,64 +52,110 @@ small {
 /* general purpose class */
 
 .container {
-    margin: 0 auto;
-    max-width: 960px; }
+  margin: 0 auto;
+  max-width: 960px;
+}
 
 .rounded-icon {
-    display: inline-block; 
-    text-align: center;
-    width: 32px;
-    height: 32px;
-    font-size: 24px;
-    line-height: 32px;
-    border-radius: 5px;
-    color: #222;
-    background: #073a7c; }
+  display: inline-block; 
+  text-align: center;
+  width: 24px;
+  height: 24px;
+  padding: 5px;
+  line-height: 32px;
+  border-radius: 3px;
+  color: #222;
+  background: #073a7c;
+}
 
-.padding {
-    padding: 10px; }
-
-.block {
-    display: block; width: 100%; }
+.label {
+  color: #073a7c;
+  font-weight: bold;
+  font-size: 16px;
+  padding: 8px;
+  display: inline-block;
+}
 
 .text-center {
-    text-align: center; }
+  text-align: center;
+}
 
 .text-right {
-    text-align: right; }
+  text-align: right;
+}
 
 .menu-bar {
-    background: #222;
-    border-bottom: 2px #073a7c solid;
-    width: 100%; }
+  background: #222;
+  border-bottom: 2px #073a7c solid;
+  width: 100%;
+  padding: 4px;
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+}
+
+body {
+  padding-top: 45px;
+}
 
 .menu-bar div div div {
-    display: inline-block;
-    float: left;
+  display: inline-block;
+  float: left;
 }
 
 /* viewer.html styles */
 
 .comic-page {
-    border-left: 2px #999 solid;
-    border-right: 2px #999 solid; }
+  box-shadow: 0 0 1px 1px #000;
+}
 
 /* folder.html styles */
 
 .search-box {
-    width: 100%;
-    display: block;
-    padding: 3px;
-    color: #073a7c; }
+  border-radius: 3px;
+  padding: 5px !important;
+  border: 1px solid #073a7c;
+  outline: 0;
+  width: 100%;
+  display: block;
+}
 
-.thumbnail {
-    border: 2px #999 solid;
-    overflow: hidden;
-    border-radius: 3px;
-    box-shadow: 0 0 5px 2px rgba(0,0,0,0.8); }
+.thumb {
+  border: 2px #999 solid;
+  overflow: hidden;
+  border-radius: 3px;
+  box-shadow: 0 0 5px 2px rgba(0,0,0,0.8);
+}
 
 .thumbnail .info {
-    border-top: 2px #999 solid;
-    white-space: nowrap;
-    padding: 3px;
-    background: #fff; }
+  border-top: 2px #999 solid;
+  white-space: nowrap;
+  padding: 3px;
+  background: #fff;
+}
+
+.folder {
+  padding: 20px !important;
+  border: 1px solid black;
+}
+
+.list-container {
+  width: 600px;
+  margin: 0 auto;
+}
+
+.list-container .list-element {
+  display: block;
+  padding: 10px;
+  border-bottom: 1px solid #999;
+}
+
+.list-container .list-element:hover {
+  background: #eee;
+}
+
+.info-table th {
+  text-align: left;
+}
+.info-table td {
+}

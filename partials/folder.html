@@ -1,47 +1,89 @@
 <div ng-controller="FolderController">
 
-    <div class="menu-bar">
-    <div class="padding container">
+  <div class="menu-bar">
+    <div class="container">
     <div class="grid">
 
     <div class="col-1-4">
-        <div ng-if="parent >= 0">
-            <a class="rounded-icon" href="#/folders/{{parent}}"><i class="fa fa-reply"></i></a>
-        </div>
+      <div ng-if="parent >= 0">
+        <a class="rounded-icon" href="#/folders/{{parent}}"><i class="fa fa-reply"></i></a>
+      </div>
     </div>
 
-    <div class="col-1-2 text-center"><h1>{{ current.label }}</h1></div>
+    <div class="col-1-2 text-center">
+      <span class="label">{{ current.label }}</span>
+    </div>
 
     <div class="col-1-4">
-        <input class="search-box" placeholder="search" type="text" ng-model="search"/>
+      <input class="search-box" placeholder="search" type="text" ng-model="search"/>
     </div>
 
     </div>
     </div>
-    </div>
+  </div>
 
-    <div class="padding container">
+  <div class="container">
 
-    <div class="grid-r">
-    <div class="col-1-4" ng-repeat="folder in folders | orderBy:'label'">
-        <a href="#/folders/{{folder.id}}"><i class="fa fa-folder"></i>  {{ folder.label }}</a>
+  <div class="list-container">
+    <div ng-repeat="folder in folders | filter:search | orderBy:'label'">
+      <a class="list-element" href="#/folders/{{folder.id}}">
+        <div class="grid">
+          <div class="col-4-5">
+            <div class="label">{{ folder.label }}</div>
+          </div>
+          <div class="col-1-5">
+            <table class="info-table">
+              <tr>
+                <th>Folders:</th>
+                <td>{{ countFolders(folder.id) }}</td>
+              </tr>
+              <tr>
+                <th>Comics:</th>
+                <td>{{ countBooks(folder.id) }}</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </a>
     </div>
-    </div>
+  </div>
 
-    <div class="grid-r">
-    <div class="col-1-4" ng-repeat="book in books | orderBy:'label'">
+  <div class="list-container">
+    <div ng-repeat="book in books | filter:search | orderBy:'label'">
+      <a class="list-element" href="#/viewer/{{ book.id }}/{{ book.current }}">
+        <div class="grid">
+          <div class="col-1-5">
+            <img class="thumb" ng-src="/api/books/{{book.id}}/{{book.current}}?width=160" />
+          </div>
+          <div class="col-4-5">
+            <table class="info-table">
+              <tr>
+                <th>Label:</th>
+                <td>{{ book.label }}</td>
+              </tr>
+              <tr>
+                <th>Pages:</th>
+                <td>{{ book.pages }}</td>
+              </tr>
+              <tr>
+                <th>Current:</th>
+                <td>{{ book.current }}</td>
+              </tr>
+              <tr>
+                <th>Archive:</th>
+                <td>{{ book.ext }}</td>
+              </tr>
+              <tr>
+                <th>MD5:</th>
+                <td>{{ book.md5 }}</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
 
-    <div class="thumbnail">
-        <a href="#/viewer/{{ book.id }}/{{ book.current }}">
-            <div class="crop"><img
-            ng-src="/api/books/{{book.id}}/{{book.current}}?width=480"
-            /></div>
-        <div class="info">{{ book.label }}</div></a>
-    </div>
-
-    </div>
-    </div>
-
-    </div>
+  </div>
 
 </div>

@@ -1,7 +1,7 @@
 <div ng-controller="ViewerController">
 
     <div class="menu-bar">
-        <div class="padding container">
+        <div class="container">
         <div class="grid">
 
             <div class="col-1-4">
@@ -9,7 +9,8 @@
             </div>
 
             <div class="text-center col-1-2">
-                <h1>{{ book.label }} <small>({{ page }} of {{ max }})</small></h1>
+                <span class="label">{{ book.label }} <small>({{ page }} of {{ max
+                }})</small></span>
             </div>
 
 
@@ -29,6 +30,16 @@
         <a href="#/viewer/{{id}}/{{page+1}}">
             <img style="width: 100%;" ng-src="/api/books/{{id}}/{{page}}"/>
         </a>
+        <div style="display: none">
+          <!-- prev buffer -->
+          <div ng-if="page > 0">
+            <img style="width: 100%;" ng-src="/api/books/{{id}}/{{page - 1}}"/>
+          </div>
+          <!-- next buffer -->
+          <div ng-if="page < max">
+            <img style="width: 100%;" ng-src="/api/books/{{id}}/{{page + 1}}"/>
+          </div>
+        </div>
     </div>
 
 </div>

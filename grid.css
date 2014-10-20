@@ -1,34 +1,38 @@
 /* A simple yet effective grid layout.  */
 
 /* reset */
-div[class^='grid'] *, 
-div[class^='grid'] *:after, 
-div[class^='grid'] *:before {
-    margin: 0;
-    padding: 0;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box; }
+div[class^='grid'] > *, 
+div[class^='grid'] > *:after, 
+div[class^='grid'] > *:before {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
 
 div[class^='grid'] {
-    /* gutter variables */
-    min-height: 20px;
-    display: block;
-    margin-right: -20px;
-    margin-bottom: -20px; }
+  font-size: 0;
+  /* gutter variables */
+  display: block;
+  margin-right: -20px;
+  margin-bottom: -20px;
+}
 
 div[class^='grid']:before,
 div[class^='grid']:after {
-    vertical-align: center;
-    content: "";
-    display: table;
-    clear: both; }
+  content: "";
+  display: table;
+  clear: both;
+}
 
-div[class^='grid'] div[class*='col-'] {
-    /* gutter variables */
-    padding-right: 20px;
-    padding-bottom: 20px;
-    display: inline-block; }
+div[class^='grid'] > div[class*='col-'] {
+  /* gutter variables */
+  padding-right: 20px;
+  padding-bottom: 20px;
+  vertical-align: top;
+  display: inline-block;
+}
 
 /* preset columns widths */
 div[class^='grid'] .col-1-1 { width: 100.0%; }
