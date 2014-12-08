@@ -4,11 +4,6 @@
 define('BASE', dirname(__FILE__)."/");
 define('ROOT', dirname($_SERVER['PHP_SELF']).'/');
 
-define('CSS',  ROOT.'css/');
-define('JS',   ROOT.'js/');
-define('IMG',  ROOT.'img/');
-
-// Set error reporting for development.
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
@@ -21,8 +16,6 @@ require('book.php');
 require('resource.php');
 
 $resource = new Resource($app);
-
-$app->get('/', function () use ($app) { include('index.html'); });
 
 $app->get('/api/check', function () use ($app) { 
 

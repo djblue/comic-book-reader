@@ -1,0 +1,18 @@
+{
+  "name": "comic-book-reader",
+  "version": "0.0.0",
+  "homepage": "https://github.com/djblue/comic-book-reader",
+  "authors": [
+    "Chris Badahdah <a.s.badahdah@gmail.com>"
+  ],
+  "description": "Simple comic book reader.",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "font-awesome": "~4.2.0",
+    "underscore": "~1.7.0",
+    "jquery": "~2.1.1",
+    "angular": "~1.3.3",
+    "angular-route": "~1.3.3"
+  }
+}

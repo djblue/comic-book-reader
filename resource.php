@@ -40,4 +40,4 @@ class Resource {
     }
 }
 
-Resource::$db = new SQLite3("db/cbviewer.db");
+Resource::$db = new SQLite3("/comics/cbviewer.db");

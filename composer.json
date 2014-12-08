@@ -1,5 +1,7 @@
 {
-    "require": {
-        "slim/slim": "2.*"
-    }
+  "version": "0.0.0",
+  "license": "MIT",
+  "require": {
+    "slim/slim": "2.*"
+  }
 }

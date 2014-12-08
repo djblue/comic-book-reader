@@ -2,5 +2,5 @@ composer.lock
 composer.phar
 db
 vendor
-bower_components
+app/lib
 .htpasswd

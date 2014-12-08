@@ -245,7 +245,7 @@ class Book {
 
 Book::$config = $config;
 
-Book::$db = new SQLite3("db/cbviewer.db");
+Book::$db = new SQLite3("/comics/cbviewer.db");
 
 // define the schema of the  table.
 Book::$db->query("

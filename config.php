@@ -3,7 +3,7 @@
 $config = [];
 
 // directy to scan for comic books
-$config['base_dir'] = '/home/chris/comics';
+$config['base_dir'] = '/comics';
 
 // default image quality
 $config['quality']= 30;
